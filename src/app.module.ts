@@ -7,9 +7,12 @@ import {
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger.middleware';
+import { UserModule } from './user/user.module';
+import { ProductModule } from './product/product.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
-  imports: [],
+  imports: [UserModule, ProductModule, PaymentModule],
   controllers: [AppController],
   providers: [AppService],
 })
