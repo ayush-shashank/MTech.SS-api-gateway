@@ -10,9 +10,15 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { PaymentModule } from './payment/payment.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, ProductModule, PaymentModule],
+  imports: [
+    UserModule,
+    ProductModule,
+    PaymentModule,
+    ConfigModule.forRoot({ isGlobal: true, expandVariables: true }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
