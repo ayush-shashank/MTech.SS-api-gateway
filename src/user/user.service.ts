@@ -32,4 +32,8 @@ export class UserService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
+
+  login(credentials: { username: string; password: string }) {
+    return this.client.send('login', credentials);
+  }
 }
