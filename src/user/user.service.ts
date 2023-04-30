@@ -1,23 +1,28 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ClientProxy } from '@nestjs/microservices';
+import { ClientProxy, RpcException } from '@nestjs/microservices';
+import { User } from './entities/user.entity';
+import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable()
 export class UserService {
   constructor(@Inject('USER_SERVICE') private client: ClientProxy) {}
 
   async create(createUserDto: CreateUserDto) {
-    this.client.emit<number>('create_user', createUserDto);
-    return 'This action adds a new user';
+    return this.client.send('createUser', createUserDto);
+    // return 'This action adds a new user';
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.client.send('findAllUser', {});
+    // return `This action returns all user`;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.client.send('findOneUser', id);
+
+    // return `This action returns a #${id} user`;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
