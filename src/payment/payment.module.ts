@@ -9,7 +9,7 @@ import { ConfigService } from '@nestjs/config';
   providers: [
     PaymentService,
     {
-      provide: 'USER_SERVICE',
+      provide: 'PAYMENT_SERVICE',
       useFactory: (config: ConfigService) => {
         const host = config.get<string>('PAYMENT_HOST', 'localhost');
         const port = config.get<number>('PAYMENT_PORT', 3003);
