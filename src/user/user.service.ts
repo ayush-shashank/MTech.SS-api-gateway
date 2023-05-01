@@ -1,9 +1,8 @@
-import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ClientProxy, RpcException } from '@nestjs/microservices';
-import { User } from './entities/user.entity';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { ClientProxy } from '@nestjs/microservices';
+import { LoginUser } from './dto/login-user.dto';
 
 @Injectable()
 export class UserService {
@@ -34,7 +33,7 @@ export class UserService {
     // return `This action removes a #${id} user`;
   }
 
-  login(credentials: { username: string; password: string }) {
+  login(credentials: LoginUser) {
     return this.client.send('login', credentials);
   }
 }

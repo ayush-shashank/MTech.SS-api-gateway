@@ -8,7 +8,7 @@ import {
   SwaggerModule,
 } from '@nestjs/swagger';
 import * as fs from 'fs';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +16,7 @@ async function bootstrap() {
   const host = config.get<string>('API_HOST', 'localhost');
   const port = +config.get<number>('API_PORT', 3000);
   app.useGlobalFilters(new GlobalExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe());
   swaggerSetup(app);
   await app.listen(port, host, () => {
     console.log(`API Service Listening on http://${host}:${port}`);

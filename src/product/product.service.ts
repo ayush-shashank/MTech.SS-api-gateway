@@ -17,7 +17,11 @@ export class ProductService {
     // return `This action returns all product`;
   }
 
-  findOne(id: number) {
+  findByName(name: string) {
+    return this.client.send('findByNameProduct', name);
+  }
+
+  findById(id: number) {
     return this.client.send('findOneProduct', id);
     // return `This action returns a #${id} product`;
   }

@@ -1,1 +1,5 @@
-export class Payment {}
+export class Payment {
+  id: number;
+  userID: number;
+  productId: number;
+}
