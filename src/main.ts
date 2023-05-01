@@ -17,6 +17,7 @@ async function bootstrap() {
   const port = +config.get<number>('API_PORT', 3000);
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors();
   swaggerSetup(app);
   await app.listen(port, host, () => {
     console.log(`API Service Listening on http://${host}:${port}`);
@@ -33,7 +34,6 @@ function swaggerSetup(app: INestApplication) {
     operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
   };
   const document = SwaggerModule.createDocument(app, config, options);
-  fs.writeFileSync('./swagger-spec.json', JSON.stringify(document));
   SwaggerModule.setup('api', app, document);
 }
 

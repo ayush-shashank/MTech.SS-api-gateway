@@ -4,5 +4,12 @@ export class CreatePaymentDto {
   @IsNotEmpty()
   userId: number;
   @IsArray()
-  productIds: number[];
+  productIds: Order[];
+}
+
+class Order {
+  @IsNotEmpty()
+  productId: number;
+  @IsNotEmpty()
+  quantity: number;
 }
