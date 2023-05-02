@@ -1,15 +1,9 @@
 import { IsArray, IsNotEmpty } from 'class-validator';
+import { Order } from '../entities/order.type';
 
 export class CreatePaymentDto {
   @IsNotEmpty()
   userId: number;
   @IsArray()
-  productIds: Order[];
-}
-
-class Order {
-  @IsNotEmpty()
-  productId: number;
-  @IsNotEmpty()
-  quantity: number;
+  orders: Order[];
 }

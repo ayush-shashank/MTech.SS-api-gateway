@@ -24,7 +24,7 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return this.client.send('updateUser', { id, updateUserDto });
+    return this.client.send('updateUser', { ...updateUserDto, id });
     // return `This action updates a #${id} user`;
   }
 

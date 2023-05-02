@@ -1,5 +1,4 @@
-export class Payment {
-  id: number;
+export type Order = {
   productId: number;
   quantity: number;
-}
+};

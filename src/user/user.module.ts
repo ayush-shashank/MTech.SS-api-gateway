@@ -12,7 +12,7 @@ import { ConfigService } from '@nestjs/config';
       provide: 'USER_SERVICE',
       useFactory: (config: ConfigService) => {
         const host = config.get<string>('USER_HOST', 'localhost');
-        const port = config.get<number>('USER_PORT', 3001);
+        const port = +config.get<number>('USER_PORT', 3001);
         return ClientProxyFactory.create({
           transport: Transport.TCP,
           options: { host: host, port: port },

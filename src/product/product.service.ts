@@ -27,7 +27,7 @@ export class ProductService {
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
-    return this.client.send('updateProduct', { id, updateProductDto });
+    return this.client.send('updateProduct', { ...updateProductDto, id });
     // return `This action updates a #${id} product`;
   }
 
